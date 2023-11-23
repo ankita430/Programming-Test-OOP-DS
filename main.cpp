@@ -1,29 +1,53 @@
 #include <iostream>
+
 using namespace std;
 
-// Define constants for matrix dimensions
-const int M = 3;  // Number of rows
-const int N = 3;  // Number of columns
+int main() {
+    int m, n;
 
-// Function to point reflection of the matrix around the center
-void pointReflection(int mat[M][N]) {
-    // Simply print from last cell to first cell.
-    for (int i = M - 1; i >= 0; i--) {
-        for (int j = N - 1; j >= 0; j--)
-            cout << mat[i][j] << " ";
+    cout << "Enter the number of rows (m): ";
+    cin >> m;
 
+    cout << "Enter the number of columns (n): ";
+    cin >> n;
+
+    int matrix[m][n];
+
+    cout << "Enter the matrix elements:" << endl;
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> matrix[i][j];
+        }
+    }
+
+    // Find the center of the matrix
+    int centerRow = m / 2;
+    int centerCol = n / 2;
+
+    // Create a matrix to store the point reflection
+    int reflectedMatrix[m][n];
+
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            reflectedMatrix[i][j] = matrix[(m - 1) - i][(n - 1) - j];
+        }
+    }
+
+    cout << "Original matrix:" << endl;
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            cout << matrix[i][j] << " ";
+        }
         cout << endl;
     }
-}
 
-// Driven code
-int main() {
-    int mat[M][N] = {
-        {1, 2, 3},
-        {4, 5, 6},
-        {7, 8, 9}
-    };
+    cout << "Point reflection of the matrix:" << endl;
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            cout << reflectedMatrix[i][j] << " ";
+        }
+        cout << endl;
+    }
 
-    pointReflection(mat);
     return 0;
 }
